@@ -1,0 +1,26 @@
+spring:
+  datasource:
+      url: jdbc:mysql://localhost/test?useUnicode=true&characterEncoding=utf8
+      username: root
+      password:
+      driver-class-name: com.mysql.jdbc.Driver
+  profiles:
+    active:
+      - dubbo
+  dubbo:
+    application:
+      name: yp-provider     # 必填 服务治理 当前应用名称，用于注册中心计算应用间依赖关系，注意：消费者和提供者应用名不要一样，此参数不是匹配条件，你当前项目叫什么名字就填什么，和提供者消费者角色无关，比如：kylin应用调用了morgan应用的服务，则kylin项目配成kylin，morgan项目配成morgan，可能kylin也提供其它服务给别人使用，但kylin项目永远配成kylin，这样注册中心将显示kylin依赖于morgan 1.0.16以上版本
+#####################################################扫描注解的包###############################################################
+    base-package: com.yp.ypproviderservice.service  # 注解所在的包,多个用逗号分割
+#####################################################扫描注解的包###############################################################
+
+#####################################################发布者通用配置信息###############################################################
+    provider:                  # 公用的生产者配置
+      retries: -1              # 可选 性能调优 远程服务调用重试次数，不包括第一次调用，不需要重试请设为0 2.0.5以上版本
+      accesslog: false         # 可选 服务治理 设为true，将向logger中输出访问日志，也可填写访问日志文件路径，直接把访问日志输出到指定文件 2.0.5以上版本
+      token: true              # 可选 服务治理 令牌验证，为空表示不开启，如果为true，表示随机生成动态令牌 2.0.5以上版本
+#      filter: providerFilter   # 可选 性能调优 服务提供方远程调用过程拦截器名称，多个名称用逗号分隔 2.0.5以上版本
+      registry: test2             # 可选 配置关联 向指定注册中心注册，在多个注册中心时使用，值为spring.dubbo.registry.的id属性，多个注册中心ID用逗号分隔，如果不想将该服务注册到任何registry，可将值设为N/A 2.0.5以上版本
+      protocol: dubbo-jvm
+    protocol:
+      port: 20881        # 可选 性能调优 协议名称 1.0.16以上版本
