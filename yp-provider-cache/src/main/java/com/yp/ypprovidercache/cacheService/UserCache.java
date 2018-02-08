@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
 
-@Service
+@Service("userCache")
 public class UserCache {
 
     @Autowired

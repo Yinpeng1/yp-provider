@@ -40,11 +40,6 @@
 				<version>${mybatis-version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.yp</groupId>
-				<artifactId>yp-provider-cache</artifactId>
-				<version>${version}</version>
-			</dependency>
-			<dependency>
 				<groupId>com.gitee.reger</groupId>
 				<artifactId>spring-boot-starter-dubbo</artifactId>
 				<version>${spring-boot-starter-dubbo.version}</version>
