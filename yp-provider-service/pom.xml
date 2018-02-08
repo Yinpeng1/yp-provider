@@ -53,7 +53,7 @@
 		<dependency>
 			<groupId>com.yp</groupId>
 			<artifactId>yp-provider-common</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${version}</version>
 		</dependency>
 	</dependencies>
 
