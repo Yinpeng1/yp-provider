@@ -32,6 +32,11 @@
 			<artifactId>yp-provider-config</artifactId>
 			<version>${version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.yp</groupId>
+			<artifactId>api-entity</artifactId>
+			<version>${version}</version>
+		</dependency>
 	</dependencies>
 
 </project>
