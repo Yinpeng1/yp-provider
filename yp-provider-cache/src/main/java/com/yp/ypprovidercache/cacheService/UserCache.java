@@ -5,6 +5,7 @@ import com.yp.ypprovidermapper.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
@@ -18,6 +19,7 @@ public class UserCache {
     @Resource(name = "FirstRedisTemplate")
     private RedisTemplate<String, User> redisTemplate;
 
+//    @Transactional(如果对redis进行多次非读操作需要加上事物)
     public User getEntity(String name){
         if (redisTemplate.opsForValue().get(name) == null) {
             System.out.println("库中获取");

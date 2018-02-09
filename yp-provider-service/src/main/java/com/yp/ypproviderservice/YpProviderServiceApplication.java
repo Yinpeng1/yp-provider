@@ -8,13 +8,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
 import java.util.concurrent.CountDownLatch;
 
-@SpringBootApplication(scanBasePackages="com.yp.ypproviderservice.service" )
+@SpringBootApplication(scanBasePackages="com.yp.ypproviderservice.service")
 @ComponentScan(basePackages = "com.yp.**")
 @MapperScan(basePackages = "com.yp.ypprovidermapper")
 @EnableCaching
