@@ -29,6 +29,7 @@ public class DataConfig {
     public SqlSessionFactory testSqlSessionFactory(@Qualifier("db1") DataSource dataSource) throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
+        //如果使用xml来写sql的话需要开启
 //        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mybatis/mapper/test1/*.xml"));
         return bean.getObject();
     }
