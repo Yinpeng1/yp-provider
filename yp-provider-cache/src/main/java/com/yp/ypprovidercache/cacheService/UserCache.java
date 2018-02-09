@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
 
 @Service("userCache")
@@ -14,8 +15,8 @@ public class UserCache {
     @Autowired
     private UserMapper userMapper;
 
-    @Autowired
-    private RedisTemplate redisTemplate;
+    @Resource(name = "FirstRedisTemplate")
+    private RedisTemplate<String, User> redisTemplate;
 
     public User getEntity(String name){
         if (redisTemplate.opsForValue().get(name) == null) {
@@ -25,6 +26,6 @@ public class UserCache {
             return user;
         }
         System.out.println("缓存获取");
-        return (User) redisTemplate.opsForValue().get(name);
+        return redisTemplate.opsForValue().get(name);
     }
 }
