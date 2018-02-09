@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
 
 @Mapper
-@Component(value = "userMapper")
+@Component(value = "userMapper")/**解决idea无法注入mapper的问题*/
 public interface UserMapper {
 
     @Insert("insert into user(name, password) values (#{name}, #{password})")

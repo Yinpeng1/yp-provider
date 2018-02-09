@@ -1,3 +1,4 @@
+##################yml里面主要配置dubbo的协议和配置，数据源和redis连接分别在application.properties和redis.properties############################
 spring:
 #  datasource:
 #    url: jdbc:mysql://localhost/test?useUnicode=true&characterEncoding=utf8

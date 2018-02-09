@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
 
-@Service("userCache")
+@Service
 public class UserCache {
 
     @Autowired
