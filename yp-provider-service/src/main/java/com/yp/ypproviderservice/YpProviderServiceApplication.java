@@ -12,13 +12,16 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.util.concurrent.CountDownLatch;
 
-@SpringBootApplication(scanBasePackages="com.yp.ypproviderservice.service")
+@SpringBootApplication(scanBasePackages="com.yp.ypproviderservice.service",
+exclude = DataSourceAutoConfiguration.class)
 @ComponentScan(basePackages = "com.yp.**")
 @MapperScan(basePackages = "com.yp.ypprovidermapper")
 @EnableCaching
+@EnableTransactionManagement
 public class YpProviderServiceApplication implements CommandLineRunner, DisposableBean{
 
 	private  final Logger log = LoggerFactory.getLogger(YpProviderServiceApplication.class);

@@ -53,6 +53,7 @@
 		<module>yp-provider-config</module>
 		<module>yp-provider-common</module>
 		<module>yp-provider-cache</module>
+		<module>yp-provider-datasource</module>
 	</modules>
 
 </project>

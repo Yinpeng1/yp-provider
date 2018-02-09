@@ -37,6 +37,11 @@
 			<artifactId>api-entity</artifactId>
 			<version>${version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.yp</groupId>
+			<artifactId>yp-provider-datasource</artifactId>
+			<version>${version}</version>
+		</dependency>
 	</dependencies>
 
 </project>
