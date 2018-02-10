@@ -1,5 +1,8 @@
+/**如果服务需要注入多数据源，那么使用Atomiko来管理多数据源，否则注销atomiko那段代码，直接注入数据源并开启本数据源
+ * 的事物，db2也是一样*/
 package com.yp.ypproviderdatasource.config;
 
+import com.mysql.jdbc.jdbc2.optional.MysqlXADataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -7,6 +10,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jta.atomikos.AtomikosDataSourceBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -19,11 +23,27 @@ import javax.sql.DataSource;
 @MapperScan(basePackages = "com.yp.ypprovidermapper.mapper",sqlSessionTemplateRef = "test1SqlSessionTemplate")
 public class DataConfig {
     @Bean(name = "db1")
-    @ConfigurationProperties(prefix = "spring.datasource.db1")
     @Primary
-    public DataSource dataSource1(){
-        return DataSourceBuilder.create().build();
+    public DataSource dataSource1(DBConfig1 testConfig){
+        MysqlXADataSource mysqlXADataSource = new MysqlXADataSource();
+        mysqlXADataSource.setURL(testConfig.getUrl());
+        mysqlXADataSource.setPinGlobalTxToPhysicalConnection(true);
+        mysqlXADataSource.setUser(testConfig.getUsername());
+        mysqlXADataSource.setPassword(testConfig.getPassword());
+        mysqlXADataSource.setPinGlobalTxToPhysicalConnection(true);
+
+        AtomikosDataSourceBean xaDataSource = new AtomikosDataSourceBean();
+        xaDataSource.setXaDataSource(mysqlXADataSource);
+        xaDataSource.setUniqueResourceName("db1");
+        return xaDataSource;
     }
+
+//    @Bean(name = "db1")
+//    @ConfigurationProperties(prefix = "spring.datasource.db1")
+//    @Primary
+//    public DataSource dataSource1(){
+//        return DataSourceBuilder.create().build();
+//    }
     @Bean(name = "db1SqlSessionFactory")
     @Primary
     public SqlSessionFactory testSqlSessionFactory(@Qualifier("db1") DataSource dataSource) throws Exception {
@@ -33,11 +53,12 @@ public class DataConfig {
 //        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mybatis/mapper/test1/*.xml"));
         return bean.getObject();
     }
-    @Bean(name = "test1TransactionManager")
-    @Primary
-    public DataSourceTransactionManager testTransactionManager(@Qualifier("db1") DataSource dataSource) {
-        return new DataSourceTransactionManager(dataSource);
-    }
+
+//    @Bean(name = "test1TransactionManager")
+//    @Primary
+//    public DataSourceTransactionManager testTransactionManager(@Qualifier("db1") DataSource dataSource) {
+//        return new DataSourceTransactionManager(dataSource);
+//    }
 
     @Bean(name = "test1SqlSessionTemplate")
     @Primary

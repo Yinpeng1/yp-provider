@@ -19,6 +19,8 @@ public class HelloServiceImpl implements HelloService {
     @Autowired
     private UserCache userCache;
 
+    @Autowired
+    private HelloService2 helloService2;
     @Override
     public String sayHello() {
         return "Hello World";
@@ -32,8 +34,9 @@ public class HelloServiceImpl implements HelloService {
         user.setName("xxxxx");
         user.setPassword("12345567");
         userMapper.add(user);
-//        int i = 1/0;
-        user2Mapper.add(user);
+        helloService2.add(user);
+//        user2Mapper.add(user);
+        int i = 1/0;
     }
 
     @Override
