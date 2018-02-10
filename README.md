@@ -8,4 +8,4 @@
 
 #提供服务的service注入其他数据源的service和mapper都可以，只要在调用方法上加上@Transactional即可控制多数据源的事物
 
-#提供服务的接口在仓库中名字为yp-api，消费者样例为consumer，还有含有配置中心的springboot-mutiModules
+#提供服务的接口在仓库中名字为yp-api，消费者样例有两个一个是consumer，还有一个是含有配置中心的springboot-mutiModules
