@@ -34,7 +34,7 @@ public class HelloServiceImpl implements HelloService {
         user.setName("xxxxx");
         user.setPassword("12345567");
         userMapper.add(user);
-        helloService2.add(user);
+//        helloService2.add(user);
 //        user2Mapper.add(user);
         int i = 1/0;
     }

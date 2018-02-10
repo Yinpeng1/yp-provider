@@ -1,4 +1,4 @@
-/**如果服务需要注入多数据源，那么使用Atomiko来管理多数据源，否则注销atomiko那段代码，直接注入数据源并开启本数据源
+/**如果某个服务需要同时操作多数据源并且是非读操作，那么使用Atomiko来管理多数据源，否则注销atomiko那段代码，直接注入数据源并开启本数据源
  * 的事物，db2也是一样*/
 package com.yp.ypproviderdatasource.config;
 
