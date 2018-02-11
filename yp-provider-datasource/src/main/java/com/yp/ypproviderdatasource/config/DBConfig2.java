@@ -1,8 +1,6 @@
 package com.yp.ypproviderdatasource.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
-
 
 @ConfigurationProperties(prefix = "spring.datasource.db2")
 public class DBConfig2 {
